@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Romantic Affirmation Generator</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        overflow: hidden;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 800px;
+        text-align: center;
+        position: relative;
+      }
+
+      .affirmation-box {
+        background-color: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        margin: 40px 0;
+        transition: all 0.5s ease;
+      }
+
+      .affirmation {
+        color: black;
+        font-size: 2rem;
+        font-weight: 300;
+        line-height: 1.4;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        animation: fadeIn 1.5s ease forwards;
+      }
+
+      .refresh-btn {
+        background: white;
+        border: none;
+        border-radius: 50px;
+        padding: 15px 30px;
+        margin-top: 30px;
+        font-size: 1rem;
+        color: #6a7fdb;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .refresh-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .footer {
+        position: absolute;
+        bottom: 20px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 0.8rem;
+        width: 100%;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="affirmation-box">
+        <div class="affirmation" id="affirmation">
+          <!-- Affirmation will appear here -->
+        </div>
+      </div>
+      <button class="refresh-btn" id="refreshBtn">New Affirmation</button>
+      <div class="footer">Refresh for more affirmations</div>
+    </div>
+
+    <script>
+      const affirmations = [
+        "You make my world brighter every day",
+        "My heart skips a beat when you smile",
+        "Loving you is my greatest adventure",
+        "Your love is my favorite place to be",
+        "I fall for you more each day",
+        "Your heart is my home",
+        "You're the love story I always wanted",
+        "Every moment with you is a treasure",
+        "Your love is my safe haven",
+        "I choose you every single day",
+        "Your laughter is my favorite melody",
+        "My soul recognizes yours",
+        "You're the dream I never want to wake from",
+        "Your love makes me believe in magic",
+        "I love the way you love me",
+      ];
+
+      const affirmationElement = document.getElementById("affirmation");
+      const refreshBtn = document.getElementById("refreshBtn");
+
+      function generateAffirmation() {
+        const randomIndex = Math.floor(Math.random() * affirmations.length);
+        affirmationElement.style.opacity = 0;
+
+        setTimeout(() => {
+          affirmationElement.textContent = affirmations[randomIndex];
+          affirmationElement.style.opacity = 1;
+        }, 300);
+      }
+
+      // Initial load
+      generateAffirmation();
+
+      // Refresh button click
+      refreshBtn.addEventListener("click", generateAffirmation);
+
+      // Also change on spacebar press
+      document.addEventListener("keydown", function (e) {
+        if (e.code === "Space") {
+          generateAffirmation();
+        }
+      });
+    </script>
+  </body>
+</html>
